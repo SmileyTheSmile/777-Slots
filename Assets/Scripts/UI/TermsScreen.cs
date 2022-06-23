@@ -13,7 +13,6 @@ public class TermsScreen : GenericMenu
         _textObject.SetText(_termsText.text);
     }
 
-
     protected override void AddAllListeners()
     {
         _backButton.onClick.AddListener(OnBackButtonClick);

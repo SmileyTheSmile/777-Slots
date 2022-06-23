@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Fader _fader;
     [SerializeField] private GameObject _policyScreen;
     [SerializeField] private GameObject _termsScreen;
-    //[SerializeField] private GameObject _menuScreen;
+    [SerializeField] private GameObject _menuScreen;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        ShowPolicyScreen();
+        ShowMenuScreen();
     }
 
     public void LoadMenu()
@@ -34,11 +34,24 @@ public class UIManager : MonoBehaviour
         _fader.FadeOut();
     }
 
+    public void LoadGame()
+    {
+        _fader.OnFadeOut += LoadGameScene;
+        _fader.FadeOut();
+    }
+
     private void LoadMenuScene()
     {
         _fader.OnFadeOut -= LoadMenuScene;
         StartCoroutine(LoadSceneCoroutine("Menu"));
-        LoadMenuScene();
+        ShowPolicyScreen();
+    }
+
+    private void LoadGameScene()
+    {
+        _fader.OnFadeOut -= LoadGameScene;
+        StartCoroutine(LoadSceneCoroutine("Game"));
+        LoadGameScene();
     }
 
     private IEnumerator LoadSceneCoroutine(string sceneName)
@@ -51,11 +64,10 @@ public class UIManager : MonoBehaviour
         _fader.FadeIn();
     }
 
-    private void LoadPolicyScene()
+    public void ShowMenuScreen()
     {
-        _fader.OnFadeOut -= LoadPolicyScene;
-        StartCoroutine(LoadSceneCoroutine("Policy"));
-        ShowPolicyScreen();
+        HideAllScreens();
+        _menuScreen.SetActive(true);
     }
 
     public void ShowPolicyScreen()
@@ -70,16 +82,10 @@ public class UIManager : MonoBehaviour
         _termsScreen.SetActive(true);
     }
 
-    public void ShowMenuScreen()
-    {
-        HideAllScreens();
-        //_menuScreen.SetActive(true);
-    }
-
     public void HideAllScreens()
     {
         _policyScreen.SetActive(false);
         _termsScreen.SetActive(false);
-        //_menuScreen.SetActive(false);
+        _menuScreen.SetActive(false);
     }
 }

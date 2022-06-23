@@ -9,7 +9,7 @@ public class VictoryMenu : GenericMenu
     private void OnMenuButtonClick()
     {
         RemoveAllListeners();
-        UIManager.Instance.LoadMenu();
+        UIManager.Instance.LoadGame();
     }
 
     private void OnQuitButtonClick()

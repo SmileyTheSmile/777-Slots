@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PolicyScreen : GenericMenu
+public class AcceptScreen : GenericMenu
 {
     [SerializeField] private Button _termsButton;
     [SerializeField] private Button _backButton;
@@ -23,16 +23,16 @@ public class PolicyScreen : GenericMenu
 
     private void OnTermsButtonClick()
     {
-        UIManager.Instance.ShowTermsScreen();
+        MainMenu.Instance.ShowTermsScreen();
     }
 
     private void OnAcceptSliderClick(float value)
     {
-        UIManager.Instance.LoadGame();
+        MainMenu.Instance.LoadGame();
     }
 
     private void OnBackButtonClick()
     {
-        UIManager.Instance.ShowMenuScreen();
+        MainMenu.Instance.ShowMenuScreen();
     }
 }

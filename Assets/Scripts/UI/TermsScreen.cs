@@ -25,6 +25,6 @@ public class TermsScreen : GenericMenu
 
     private void OnBackButtonClick()
     {
-        UIManager.Instance.ShowPolicyScreen();
+        MainMenu.Instance.ShowPolicyScreen();
     }
 }

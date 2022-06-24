@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuScreen : GenericMenu
+public class StartScreen : GenericMenu
 {
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _exitButton;
@@ -20,7 +20,7 @@ public class MenuScreen : GenericMenu
 
     private void OnStartButtonClick()
     {
-        UIManager.Instance.ShowPolicyScreen();
+        MainMenu.Instance.ShowPolicyScreen();
     }
 
     private void OnExitButtonClick()

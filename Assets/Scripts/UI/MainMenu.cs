@@ -1,41 +1,72 @@
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class MainMenu : GenericMenu
+public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private Button _startButton;
-    [SerializeField] private Button _optionsButton;
-    [SerializeField] private Button _exitButton;
+    public static MainMenu Instance;
 
-    private void OnPlayButtonClick()
+    [SerializeField] private GameObject _acceptScreen;
+    [SerializeField] private GameObject _termsScreen;
+    [SerializeField] private GameObject _startScreen;
+
+    private void Awake()
     {
-        RemoveAllListeners();
-        //UIManager.Instance.LoadGame();
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
     }
 
-    private void OnOptionsButtonClick()
+    private void Start()
     {
-        RemoveAllListeners();
-        //UIManager.Instance.ShowOptionsScreen();
+        ShowMenuScreen();
     }
 
-    private void OnExitButtonClick()
+    public void LoadMenu()
     {
-        RemoveAllListeners();
-        Application.Quit();
+        StartCoroutine(LoadSceneCoroutine("Menu"));
+        ShowPolicyScreen();
     }
 
-    protected override void RemoveAllListeners()
+    public void LoadGame()
     {
-        _startButton.onClick.RemoveAllListeners();
-        _optionsButton.onClick.RemoveAllListeners();
-        _exitButton.onClick.RemoveAllListeners();
+        StartCoroutine(LoadSceneCoroutine("Game"));
     }
 
-    protected override void AddAllListeners()
+    private IEnumerator LoadSceneCoroutine(string sceneName)
     {
-        _startButton.onClick.AddListener(OnPlayButtonClick);
-        _optionsButton.onClick.AddListener(OnOptionsButtonClick);
-        _exitButton.onClick.AddListener(OnExitButtonClick);
+        var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncOperation.isDone)
+            yield return null;
+    }
+
+    public void ShowMenuScreen()
+    {
+        HideAllScreens();
+        _startScreen.SetActive(true);
+    }
+
+    public void ShowPolicyScreen()
+    {
+        HideAllScreens();
+        _acceptScreen.SetActive(true);
+    }
+
+    public void ShowTermsScreen()
+    {
+        HideAllScreens();
+        _termsScreen.SetActive(true);
+    }
+
+    public void HideAllScreens()
+    {
+        _acceptScreen.SetActive(false);
+        _termsScreen.SetActive(false);
+        _startScreen.SetActive(false);
     }
 }

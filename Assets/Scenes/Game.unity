@@ -310,7 +310,15 @@ MonoBehaviour:
   - {fileID: 4330513687116767573, guid: 57afe1a0e8e08ea4a99e03874997eccf, type: 3}
   - {fileID: 8466350459072102932, guid: e888c778900638141ba6456554309917, type: 3}
   - {fileID: 4010182244861857826, guid: a5c1ce0a518297c489c56d85784bc0f1, type: 3}
-  _elementNum: 5
+  - {fileID: 2254286269348959209, guid: 535f9b7448f1ee4458d98bc8fecf2713, type: 3}
+  - {fileID: 8171666677444819848, guid: bb577f0c6b459f1489b0eb2698ed6a5e, type: 3}
+  - {fileID: 1152831528858053459, guid: 1e02554d49f6f5d41b0d350f3d23af0d, type: 3}
+  - {fileID: 2188669899290742389, guid: 5aa6ca6115c7c7646a4222aa61eb68e9, type: 3}
+  _minElementNum: 4
+  _defaultBet: 10
+  _betMultiplier: 2
+  _shiftDelayUpper: 0.2
+  _shiftDelayLower: 0.2
 --- !u!1 &135399044
 GameObject:
   m_ObjectHideFlags: 0
